@@ -1,5 +1,10 @@
-# This is a dummy Dockerfile to satisfy Render's requirement.
-# The actual deployment uses docker-compose.yaml.
+FROM mysql:5.7
 
-FROM alpine:latest
-CMD echo "This is a dummy Dockerfile. Use docker-compose.yaml instead."
+# Set environment variables
+ENV MYSQL_ROOT_PASSWORD=rootpassword
+ENV MYSQL_DATABASE=mydatabase
+ENV MYSQL_USER=myuser
+ENV MYSQL_PASSWORD=mypassword
+
+# Copy initialization scripts (optional)
+COPY init.sql /docker-entrypoint-initdb.d/
